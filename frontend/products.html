@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - SQL Injection Simulator</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="scanline-bg">
+  <nav class="navbar">
+    <div class="logo">💉 SQLi SIMULATOR</div>
+    <div class="nav-links">
+      <a href="/">🏠 Home</a>
+      <a href="/login">🔑 Login</a>
+      <a href="/products">🛒 Products</a>
+      <a href="/dashboard">📊 Dashboard</a>
+      <a href="/admin">👨‍💼 Admin</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">🛒 Product Search</h1>
+    <p class="page-subtitle">Search products and try SQL injection to reveal hidden data</p>
+
+    <div class="mode-toggle">
+      <button class="mode-btn vulnerable active" data-mode="vulnerable">🔓 Vulnerable</button>
+      <button class="mode-btn secure" data-mode="secure">🔐 Secure</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Search Products</div>
+      <form id="search-form" style="display:flex;gap:0.75rem">
+        <input type="text" id="search-input" placeholder="Search for a product..." style="flex:1;padding:0.75rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--green);font-family:'JetBrains Mono',monospace">
+        <button type="submit" class="btn btn-primary">🔍 Search</button>
+      </form>
+
+      <div class="examples" style="margin-top:1rem">
+        <div class="card-title" style="font-size:0.75rem">💥 Try These Injections:</div>
+        <div class="example-item" data-search="' OR 1=1 --">➤ <code>' OR 1=1 --</code> — Show ALL products</div>
+        <div class="example-item" data-search="' UNION SELECT id,username,password,role FROM users--">➤ <code>' UNION SELECT ... FROM users--</code> — Steal user data</div>
+        <div class="example-item" data-search="Laptop">➤ <code>Laptop</code> — Normal search</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <div class="card-title">📡 Executed Query</div>
+      <div class="query-viewer" id="query-display">
+        <code style="color:var(--text-dim)">Search to see the SQL query...</code>
+      </div>
+    </div>
+
+    <div id="result"></div>
+
+    <div class="visualizer" id="visualizer" style="margin-top:1.5rem">
+      <div class="card-title">🔍 Attack Visualizer</div>
+      <p style="color:var(--text-dim);font-size:0.8rem">Submit a search to see visualization...</p>
+    </div>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>

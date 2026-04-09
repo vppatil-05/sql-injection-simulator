@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - SQL Injection Simulator</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="scanline-bg">
+  <nav class="navbar">
+    <div class="logo">💉 SQLi SIMULATOR</div>
+    <div class="nav-links">
+      <a href="/">🏠 Home</a>
+      <a href="/login">🔑 Login</a>
+      <a href="/products">🛒 Products</a>
+      <a href="/dashboard">📊 Dashboard</a>
+      <a href="/admin">👨‍💼 Admin</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">👨‍💼 Admin Panel</h1>
+    <p class="page-subtitle">Hidden admin panel — accessible via SQL injection: <code style="color:var(--yellow)">' OR role='admin'--</code></p>
+
+    <div class="admin-grid">
+      <div class="card">
+        <div class="card-title">➕ Add Product</div>
+        <form id="add-product-form">
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" id="prod-name" placeholder="Product name..." required>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" id="prod-desc" placeholder="Description...">
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" id="prod-price" step="0.01" placeholder="29.99" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%">➕ Add Product</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📦 All Products</div>
+        <table>
+          <thead><tr><th>ID</th><th>Name</th><th>Price</th><th>Action</th></tr></thead>
+          <tbody id="admin-products">
+            <tr><td colspan="4" style="color:var(--text-dim);text-align:center">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>

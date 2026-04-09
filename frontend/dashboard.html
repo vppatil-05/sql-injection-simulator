@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SQL Injection Simulator</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="scanline-bg">
+  <nav class="navbar">
+    <div class="logo">💉 SQLi SIMULATOR</div>
+    <div class="nav-links">
+      <a href="/">🏠 Home</a>
+      <a href="/login">🔑 Login</a>
+      <a href="/products">🛒 Products</a>
+      <a href="/dashboard">📊 Dashboard</a>
+      <a href="/admin">👨‍💼 Admin</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">📊 Attack Dashboard</h1>
+    <p class="page-subtitle">Real-time analytics of all SQL injection attempts</p>
+
+    <div class="stats-grid" id="stats-grid">
+      <div class="stat-card cyan">
+        <div class="stat-number" id="stat-total">0</div>
+        <div class="stat-label">Total Queries</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-number" id="stat-attacks">0</div>
+        <div class="stat-label">Attack Attempts</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-number" id="stat-success">0</div>
+        <div class="stat-label">Successful Attacks</div>
+      </div>
+      <div class="stat-card yellow">
+        <div class="stat-number" id="stat-failed">0</div>
+        <div class="stat-label">Blocked/Failed</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📝 Recent Activity Log</div>
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Status</th><th>Result</th><th>Time</th></tr>
+        </thead>
+        <tbody id="logs-body">
+          <tr><td colspan="4" style="color:var(--text-dim);text-align:center">Loading logs...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - SQL Injection Simulator</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="scanline-bg">
+  <nav class="navbar">
+    <div class="logo">💉 SQLi SIMULATOR</div>
+    <div class="nav-links">
+      <a href="/">🏠 Home</a>
+      <a href="/login">🔑 Login</a>
+      <a href="/products">🛒 Products</a>
+      <a href="/dashboard">📊 Dashboard</a>
+      <a href="/admin">👨‍💼 Admin</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">🔑 Login Page</h1>
+    <p class="page-subtitle">Test SQL injection on a login form</p>
+
+    <div class="mode-toggle">
+      <button class="mode-btn vulnerable active" data-mode="vulnerable">🔓 Vulnerable</button>
+      <button class="mode-btn secure" data-mode="secure">🔐 Secure</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem">
+      <div class="card">
+        <div class="card-title">Login Form</div>
+        <form id="login-form">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Enter username..." autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="text" id="password" placeholder="Enter password..." autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%">🔑 Login</button>
+        </form>
+
+        <div class="examples" style="margin-top:1.5rem">
+          <div class="card-title" style="font-size:0.75rem">💥 Try These Injections:</div>
+          <div class="example-item" data-user="' OR '1'='1" data-pass="' OR '1'='1">
+            ➤ <code>' OR '1'='1</code> — Classic bypass
+          </div>
+          <div class="example-item" data-user="admin'--" data-pass="anything">
+            ➤ <code>admin'--</code> — Comment bypass
+          </div>
+          <div class="example-item" data-user="' OR role='admin'--" data-pass="">
+            ➤ <code>' OR role='admin'--</code> — Admin access
+          </div>
+          <div class="example-item" data-user="admin" data-pass="admin123">
+            ➤ <code>admin / admin123</code> — Normal login
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:1rem">
+          <div class="card-title">📡 Executed Query</div>
+          <div class="query-viewer" id="query-display">
+            <code style="color:var(--text-dim)">Submit the form to see the SQL query...</code>
+          </div>
+        </div>
+        <div id="result"></div>
+      </div>
+    </div>
+
+    <div class="visualizer" id="visualizer" style="margin-top:1.5rem">
+      <div class="card-title">🔍 Attack Visualizer</div>
+      <p style="color:var(--text-dim);font-size:0.8rem">Submit the form to see the step-by-step visualization...</p>
+    </div>
+
+    <div style="margin-top:1.5rem;text-align:center">
+      <button class="btn btn-auto" onclick="runAutoAttack()">🤖 Run Auto Attack</button>
+    </div>
+    <div id="auto-results" class="visualizer" style="margin-top:1rem;display:none"></div>
+  </div>
+
+  <script src="/js/script.js"></script>
+  <script>
+    document.querySelector('.btn-auto')?.addEventListener('click', () => {
+      document.getElementById('auto-results').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
